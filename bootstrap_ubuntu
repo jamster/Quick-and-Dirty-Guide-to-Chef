@@ -117,6 +117,10 @@ esac
 sudo chef-solo -c ~/solo.rb -j ~/chef.json -r http://s3.amazonaws.com/chef-solo/bootstrap-latest.tar.gz
 
 
+# Registering clients with server
+
+if [[ "$server_type" == "client" ]]
+
 cat << EOF > /etc/chef/validation.pem
 -----BEGIN RSA PRIVATE KEY-----
 CONTENTS OF VALIDATION.PEM FROM CHEF SERVER
@@ -135,7 +139,7 @@ client_key       '/home/ubuntu/.chef/ubuntu.pem'
 chef_server_url  '$chef_server_url'
 cache_type       'BasicFile'
 cache_options( :path => '/home/ubuntu/.chef/checksums' )
-cookbook_path [ '/projects/bfd-chef/cookbooks' ]
+cookbook_path [ '/projects/name/cookbooks' ]
 validation_client_name "chef-validator"
 validation_key    "/home/ubuntu/.chef/validation.pem"
 EOF
@@ -143,3 +147,4 @@ EOF
 knife client create `hostname` -f /home/ubuntu/.chef/ubuntu.pem
 
 rm /etc/chef/validation.pem
+fi
