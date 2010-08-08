@@ -64,6 +64,7 @@ what chef is.
 * Install chef-solo
 * Have chef solo bootstrap to the chef client
 * Register client with the server (Validation.pem)
+* Tell the server which roles (via web-ui or via command line???)
 
 ### Create local working Environment
 

@@ -22,7 +22,7 @@ if [ $# -lt 2 ];
     echo "  chef-instance-type: (server, server_with_webui, client)"
     echo "  chef-server-url: (http://chef.yourdomain.com:portnumber)"
     echo ""
-    echo "author: jason amster <gmail: jayamster>"
+    echo "author: Jason Amster <gmail: jayamster>"
     exit 1
 else
     server_type=$1
@@ -63,9 +63,6 @@ cat << EOF > ~/.gemrc
 :backtrace: false
 gem: --no-ri --no-rdoc
 EOF
-
-# Set your GEMRC file
-# sudo echo $GEMRC > ~/.gemrc
 
 # Install Chef
 sudo gem install chef --no-ri --no-rdoc
@@ -116,9 +113,7 @@ echo $CHEF_JSON_CLIENT > ~/chef.json
   ;;
 esac
 
-
 sudo chef-solo -c ~/solo.rb -j ~/chef.json -r http://s3.amazonaws.com/chef-solo/bootstrap-latest.tar.gz
-
 
 # Registering clients with server
 
@@ -147,7 +142,10 @@ validation_client_name "chef-validator"
 validation_key    "/home/ubuntu/.chef/validation.pem"
 EOF
 
+# Create client so that chef-server knows about the client
 knife client create `hostname` -f /home/ubuntu/.chef/ubuntu.pem
 
+# Clear out the validation.pem as it's not necessary anymore
 rm /etc/chef/validation.pem
+
 fi
