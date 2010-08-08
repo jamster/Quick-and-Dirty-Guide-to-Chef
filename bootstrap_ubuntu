@@ -5,10 +5,13 @@
 # ======================================================
 #
 # This is a simple script to install all the basics for a bare ubuntu box.
-# This has only been tested (and not well) on these to AMIs: 
+# This has only been tested (and not well) on these to AMIs:
 #
 #   32bit: ami-2d4aa444
 #   64bit: ami-d86a88b1
+# TBD: ss
+#   Test on Rackspace Ubuntu 10.04 image
+#   Test on Rackspace Debian 5 (?) image
 #
 
 if [ $# -lt 2 ];

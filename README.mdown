@@ -1,37 +1,62 @@
 # Quick and dirty Guide to Chef by it's Victims
-This document is to provide a quick and dirty guide to Chef.  It is an alternative to the currently [existing wiki of documentation sprawl][0].  By no means is this document considered to be a full resource on Chef, but just for someone who kinda knows what it is to get up and running in the shortest amount of time possible.  This document is on github because I am not an expert on Chef and wish for others' to contribute and help me edit/tune it so that it gives anyone wishing to use chef a more pleasant experience than most of the folks who dive in headfirst with no prior knowledge of the framework.
+
+The purpose of this document is to provide a quick and dirty guide to Chef. It
+is an alternative to the currently [existing wiki of documentation sprawl][0].
+
+By no means should this document be considered to be a full resource on Chef;
+it is just for someone who kinda knows what Chef is to get up and running as
+quickly as possible.
+
+This document was originally written by two Chef novices, to capture the
+hard-won lessons for new novices who get stuck while first trying to get Chef
+running and find the [chef wiki][0] overwhelming.
+
+This is an open document; if you get stuck on Chef while following these
+instructions, please either file a ticket or fork, edit, and let us know to
+pull your changes over!
+
+We want to keep the way paved for new users like us before we get all
+experienced up and forget all the things that made the other documentation
+difficult for us to use.
 
 
+## What is Chef (philosophy)
 
+[On the Chef site they say][3]:
 
-## What is Chef (philosphy)
+Chef is an open source systems integration framework built to bring
+the benefits of configuration management to your entire infrastructure. You
+write source code to describe how you want each part of your infrastructure to
+be built, then apply those descriptions to your servers. The result is a fully
+automated infrastructure: when a new server comes on line, the only thing you
+have to do is tell Chef what role it should play in your architecture.
 
-Chef is a tool to setup, manage and deploy your network topology.  This is broad, but chef is a broad tool and can be used for many purposes.  
-	
 ## What Chef is not
 
-Easy :) Idk, something here about what it's, not... I can't put my head around it yet, but this could be a good spot to dispel common misconceptions about what chef is.  
+Easy :) Idk, something here about what it's, not... I can't put my head around
+it yet, but this could be a good spot to dispel common misconceptions about
+what chef is.
 
 ## The Ecosystem
 * Server
 * Client
 * Localhost (Cookbook Editing and Uploading)
-	
+
 ## Tools
 
 * Knife
-	
+
 ## Step By Step
 
 ### Install the server:
 
 * (Get a domain)
 * Boot a machine (ami-2d4aa444 Lucid 32Bit for just server)
-* Run Bootstrap Script
+* Run the included Bootstrap Script
 * Install chef-solo
 * have chef solo bootstrap to chef server
-		
-	
+
+
 ### Install the client:
 
 * Boot a machine (ami-d86a88b1 Lucid 64Bit b/c it's gonna be used)
@@ -71,6 +96,7 @@ Once you've made your great commits:
 4. Create an [Issue][2] with a link to your branch
 5. That's it!
 
-[0]: http://chefs
+[0]: http://wiki.opscode.com/dashboard.action
 [1]: http://help.github.com/forking/
 [2]: http://github.com/defunkt/Quick-and-Dirty-Guide-to-Chef/issues
+[3]: http://www.opscode.com/chef/
