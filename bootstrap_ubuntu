@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# ======================================================
+# = Bootstrap a Bare ubuntu instance to a Chef Machine =
+# ======================================================
+#
+# This is a simple script to install all the basics for a bare ubuntu box.
+# This has only been tested (and not well) on these to AMIs: 
+#
+#   32bit: ami-2d4aa444
+#   64bit: ami-d86a88b1
+#
+
 if [ $# -lt 2 ];
     then
     scriptname=`basename $0`
