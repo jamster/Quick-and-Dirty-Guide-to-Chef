@@ -26,7 +26,7 @@ Easy :) Idk, something here about what it's, not... I can't put my head around i
 ### Install the server:
 
 * (Get a domain)
-* Boot a machine
+* Boot a machine (ami-2d4aa444 Lucid 32Bit for just server)
 * Run Bootstrap Script
 * Install chef-solo
 * have chef solo bootstrap to chef server
@@ -34,7 +34,7 @@ Easy :) Idk, something here about what it's, not... I can't put my head around i
 	
 ### Install the client:
 
-* Boot a machine
+* Boot a machine (ami-d86a88b1 Lucid 64Bit b/c it's gonna be used)
 * Run Bootstrap Script
 * Install chef-solo
 * Have chef solo bootstrap to the chef client

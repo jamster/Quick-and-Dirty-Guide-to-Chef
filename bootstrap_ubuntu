@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 2 ];
+    then
+    scriptname=`basename $0`
+    echo "usage: ./$scriptname <chef-instance-type> <chef-server-url>"
+    echo ""
+    echo "  chef-instance-type: (server, server_with_webui, client)"
+    echo "  chef-server-url: (http://chef.yourdomain.com:portnumber)"
+    echo ""
+    echo "author: jason amster <gmail: jayamster>"
+    exit 1
+else
+    server_type=$1
+    chef_server_url=$2
+fi
+
+
+# Get updates on essential libraries
+sudo apt-get update
+sudo apt-get dist-upgrade
+sudo apt-get install ruby ruby1.8-dev build-essential irb libopenssl-ruby -y
+
+
+# install ruby gems
+(mkdir -p /tmp
+cd /tmp
+wget http://production.cf.rubygems.org/rubygems/rubygems-1.3.7.tgz
+tar zxf rubygems-1.3.7.tgz
+cd rubygems-1.3.7
+sudo ruby setup.rb
+sudo ln -sfv /usr/bin/gem1.8 /usr/bin/gem)
+
+# Install RDOC so that it doesn't bitch out
+sudo gem install rdoc --no-ri --no-rdoc
+
+touch ~/.gemrc
+
+cat << EOF > ~/.gemrc
+---
+:verbose: true
+:bulk_threshold: 1000
+:sources:
+- http://gems.rubyforge.org/
+- http://gems.github.com
+- http://gemcutter.org
+:benchmark: false
+:update_sources: true
+:backtrace: false
+gem: --no-ri --no-rdoc
+EOF
+
+# Set your GEMRC file
+# sudo echo $GEMRC > ~/.gemrc
+
+# Install Chef
+sudo gem install chef --no-ri --no-rdoc
+
+# Install chef config files
+cat << EOF > ~/solo.rb
+file_cache_path "/tmp/chef-solo"
+cookbook_path "/tmp/chef-solo/cookbooks"
+EOF
+
+CHEF_JSON_SERVER="
+{\n
+  \"chef\": {\n
+    \"server_url\": \"$chef_server_url\"\n
+  },\n
+  \"run_list\": [ \"recipe[chef::bootstrap_server]\" ]\n
+}\n
+"
+
+CHEF_JSON_SERVER_WEB="
+{\n
+  \"chef\": {\n
+    \"server_url\": \"$chef_server_url\",\n
+    \"webui_enabled\": true\n
+  },\n
+  \"run_list\": [ \"recipe[chef::bootstrap_server]\" ]\n
+}\n
+"
+CHEF_JSON_CLIENT="\n
+{\n
+  \"chef\": {\n
+    \"server_url\": \"$chef_server_url\"\n
+  },\n
+  \"run_list\": [ \"recipe[chef::bootstrap_client]\" ]\n
+}\n
+"
+
+# Based upon the server_type, which JSON are we gonna put into the config
+case $server_type in
+'server')
+echo $CHEF_JSON_SERVER > ~/chef.json
+  ;;
+'server_with_webui')
+echo $CHEF_JSON_SERVER_WEB > ~/chef.json
+  ;;
+'client')
+echo $CHEF_JSON_CLIENT > ~/chef.json
+  ;;
+esac
+
+
+sudo chef-solo -c ~/solo.rb -j ~/chef.json -r http://s3.amazonaws.com/chef-solo/bootstrap-latest.tar.gz
+
+
+cat << EOF > /etc/chef/validation.pem
+-----BEGIN RSA PRIVATE KEY-----
+CONTENTS OF VALIDATION.PEM FROM CHEF SERVER
+-----END RSA PRIVATE KEY-----
+EOF
+
+sudo chef-client
+
+mkdir -p ~/.chef/checksums
+
+cat << EOF > ~/.chef/knife.rb
+log_level        :info
+log_location     STDOUT
+node_name        `hostname`
+client_key       '/home/ubuntu/.chef/ubuntu.pem'
+chef_server_url  '$chef_server_url'
+cache_type       'BasicFile'
+cache_options( :path => '/home/ubuntu/.chef/checksums' )
+cookbook_path [ '/projects/bfd-chef/cookbooks' ]
+validation_client_name "chef-validator"
+validation_key    "/home/ubuntu/.chef/validation.pem"
+EOF
+
+knife client create `hostname` -f /home/ubuntu/.chef/ubuntu.pem
+
+rm /etc/chef/validation.pem
