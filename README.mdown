@@ -1,0 +1,63 @@
+# Quick and dirty Guide to Chef by it's Victims
+This document is to provide a quick and dirty guide to Chef.  By no means is this document considered to be a full resource on Chef, but just for someone who kinda knows what it is to get up and running in the shortest amount of time possible.  This document is on github because I am not an expert on Chef and wish for others' to contribute and help me edit/tune it so that it gives anyone wishing to use chef a more pleasant experience than most of the folks who dive in headfirst with no prior knowledge of the framework.
+
+
+
+
+## What is Chef (philosphy)
+
+Chef is a tool to setup, manage and deploy your network topology.  This is broad, but chef is a broad tool and can be used for many purposes.  
+	
+## What Chef is not
+
+Easy :) Idk, something here about what it's, not... I can't put my head around it yet, but this could be a good spot to dispel common misconceptions about what chef is.  
+
+## The Ecosystem
+* Server
+* Client
+* Localhost (Cookbook Editing and Uploading)
+	
+## Tools
+
+* Knife
+	
+## Step By Step
+
+### Install the server:
+
+* (Get a domain)
+* Boot a machine
+* Run Bootstrap Script
+* Install chef-solo
+* have chef solo bootstrap to chef server
+		
+	
+### Install the client:
+
+* Boot a machine
+* Run Bootstrap Script
+* Install chef-solo
+* Have chef solo bootstrap to the chef client
+* Register client with the server (Validation.pem)
+
+### Create local working Environment
+
+* Install Chef
+* Setup Knife
+* Setup local machine as client
+* Download opscode base cookbooks
+* (Optionally commit to git)
+* Edit (or not) cookbooks
+* Push them to server
+
+### Back to the client:
+
+* Run chef-client to get the machine to "converge" to the recipe
+
+## Meta
+### Authors
+
+Jason Amster <jayamster[AT]gmail.com>
+<ssteinerx[AT]gmail.com>
+
+### Contributing
