@@ -57,7 +57,16 @@ Easy :) Idk, something here about what it's, not... I can't put my head around i
 ## Meta
 ### Authors
 
-Jason Amster <jayamster[AT]gmail.com>
-<ssteinerx[AT]gmail.com>
+* Jason Amster <jayamster[AT]gmail.com>
+* <ssteinerx[AT]gmail.com>
 
-### Contributing
+Contributing
+------------
+
+Once you've made your great commits:
+
+1. [Fork][1] Resque
+2. Create a topic branch - `git checkout -b my_branch`
+3. Push to your branch - `git push origin my_branch`
+4. Create an [Issue][2] with a link to your branch
+5. That's it!
