@@ -125,8 +125,11 @@ CONTENTS OF VALIDATION.PEM FROM CHEF SERVER
 -----END RSA PRIVATE KEY-----
 EOF
 
-sudo chef-client
+# This is the main function here that pulls in the cookbooks and converges the
+# client
 
+sudo chef-client
+ 
 mkdir -p ~/.chef/checksums
 
 cat << EOF > ~/.chef/knife.rb
