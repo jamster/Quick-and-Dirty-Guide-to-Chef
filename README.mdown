@@ -1,5 +1,5 @@
 # Quick and dirty Guide to Chef by it's Victims
-This document is to provide a quick and dirty guide to Chef.  By no means is this document considered to be a full resource on Chef, but just for someone who kinda knows what it is to get up and running in the shortest amount of time possible.  This document is on github because I am not an expert on Chef and wish for others' to contribute and help me edit/tune it so that it gives anyone wishing to use chef a more pleasant experience than most of the folks who dive in headfirst with no prior knowledge of the framework.
+This document is to provide a quick and dirty guide to Chef.  It is an alternative to the currently [existing wiki of documentation sprawl][0].  By no means is this document considered to be a full resource on Chef, but just for someone who kinda knows what it is to get up and running in the shortest amount of time possible.  This document is on github because I am not an expert on Chef and wish for others' to contribute and help me edit/tune it so that it gives anyone wishing to use chef a more pleasant experience than most of the folks who dive in headfirst with no prior knowledge of the framework.
 
 
 
@@ -57,8 +57,8 @@ Easy :) Idk, something here about what it's, not... I can't put my head around i
 ## Meta
 ### Authors
 
-* Jason Amster <jayamster[AT]gmail.com>
-* <ssteinerx[AT]gmail.com>
+* Jason Amster [jayamster[AT]gmail.com]
+* ssteinerx [ssteinerx[AT]gmail.com]
 
 Contributing
 ------------
@@ -70,3 +70,7 @@ Once you've made your great commits:
 3. Push to your branch - `git push origin my_branch`
 4. Create an [Issue][2] with a link to your branch
 5. That's it!
+
+[0]: http://chefs
+[1]: http://help.github.com/forking/
+[2]: http://github.com/defunkt/Quick-and-Dirty-Guide-to-Chef/issues
