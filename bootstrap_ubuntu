@@ -37,7 +37,7 @@ sudo apt-get install ruby ruby1.8-dev build-essential irb libopenssl-ruby -y
 
 
 # install ruby gems
-(mkdir -p /tmp
+mkdir -p /tmp
 cd /tmp
 wget http://production.cf.rubygems.org/rubygems/rubygems-1.3.7.tgz
 tar zxf rubygems-1.3.7.tgz
