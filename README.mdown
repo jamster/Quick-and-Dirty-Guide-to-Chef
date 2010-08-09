@@ -99,5 +99,5 @@ Once you've made your great commits:
 
 [0]: http://wiki.opscode.com/dashboard.action
 [1]: http://help.github.com/forking/
-[2]: http://github.com/defunkt/Quick-and-Dirty-Guide-to-Chef/issues
+[2]: http://github.com/jamster/Quick-and-Dirty-Guide-to-Chef/issues
 [3]: http://www.opscode.com/chef/
