@@ -52,7 +52,7 @@ what chef is.
 
 * (Get a domain)
 * Boot a machine (ami-2d4aa444 Lucid 32Bit for just server)
-* Run the included Bootstrap Script
+* Run included Bootstrap Script (bootstrap_ubuntu)
 * Install chef-solo
 * have chef solo bootstrap to chef server
 
@@ -60,7 +60,7 @@ what chef is.
 ### Install the client:
 
 * Boot a machine (ami-d86a88b1 Lucid 64Bit b/c it's gonna be used)
-* Run Bootstrap Script
+* Run included Bootstrap Script (bootstrap_ubuntu)
 * Install chef-solo
 * Have chef solo bootstrap to the chef client
 * Register client with the server (Validation.pem)
